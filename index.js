@@ -11,12 +11,13 @@ function clean(fileContent, fileExtension, options) {
     return '';
   }
 
-  if ( (fileExtension === 'html' || fileExtension === 'php') && options.removeComments) {
+  if ( (fileExtension === 'html' || fileExtension === 'php' || fileExtension === 'phtml') && options.removeComments) {
     fileContent = fileContent.replace(/<!--[^>]*-->/gm, '');
   }
 
   if (options.removeSpaces) {
     fileContent = fileContent.replace(/\s\s+/g, ' ');
+    fileContent = fileContent.replace(/>\s</g, '><');
   }
 
   return fileContent.replace(/^\s*[\r\n]/gm, '');
